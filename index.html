@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Directory - Discover Great Applications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #a0a0a0;
+            background: #000000;
+            margin: 0;
+        }
+
+        .top-nav {
+            background: #000000;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid #1a1f2e;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        header {
+            background: linear-gradient(135deg, #000000 0%, #0a0e1a 100%);
+            color: #d4af37;
+            padding: 5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.5); }
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            opacity: 0.8;
+            font-weight: 300;
+            color: #c0c0c0;
+        }
+
+        .search-bar {
+            max-width: 700px;
+            margin: 2.5rem auto;
+            padding: 0 1rem;
+            animation: slideUp 0.8s ease-out 0.2s both;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            font-size: 1.1rem;
+            border: 2px solid #d4af37;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.4s;
+            background: #0a0e1a;
+            color: #e0e0e0;
+        }
+
+        .search-bar input:focus {
+            border-color: #f4d03f;
+            background: #0f1320;
+            animation: glow 2s infinite;
+        }
+
+        .search-bar input::placeholder {
+            color: #606060;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .category {
+            background: linear-gradient(135deg, #0a0e1a 0%, #000000 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border: 2px solid #1a1f2e;
+            animation: slideUp 0.6s ease-out both;
+            transition: all 0.4s;
+        }
+
+        .category:nth-child(1) { animation-delay: 0.1s; }
+        .category:nth-child(2) { animation-delay: 0.2s; }
+        .category:nth-child(3) { animation-delay: 0.3s; }
+        .category:nth-child(4) { animation-delay: 0.4s; }
+
+        .category:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        .category-title h2 {
+            color: #d4af37;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .category-description {
+            color: #909090;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .app-card {
+            border: 2px solid #1a1f2e;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s;
+            background: #0a0e1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .app-card:hover::before {
+            left: 100%;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .app-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .app-description {
+            color: #808080;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .app-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .spec-tag {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0a0e1a 100%);
+            color: #d4af37;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            border: 1px solid #2a2f3e;
+            transition: all 0.3s;
+        }
+
+        .spec-tag:hover {
+            background: #d4af37;
+            color: #000000;
+            transform: scale(1.05);
+        }
+
+        .download-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2a2f3e;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+            color: #000000;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.4s;
+            margin-right: 0.7rem;
+            margin-bottom: 0.7rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .download-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            color: #606060;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: #000000;
+            color: #606060;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+            border-top: 2px solid #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-title h2 {
+                font-size: 2rem;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="logo">NEXUS APPLICATIONS</div>
+    </nav>
+    
+    <header>
+        <h1>APPLICATION DIRECTORY</h1>
+        <p>Discover and download amazing applications</p>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search applications...">
+    </div>
+
+    <div class="container" id="categoriesContainer">
+        <!-- Productivity Category -->
+        <div class="category" data-category="productivity">
+            <div class="category-header">
+                <div class="category-title">
+                    <h2>Productivity</h2>
+                    <p class="category-description">Tools to boost your efficiency and organize your work</p>
+                </div>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card" data-name="notion desktop">
+                    <h3 class="app-name">Notion Desktop</h3>
+                    <p class="app-description">All-in-one workspace for notes, tasks, wikis, and databases. Perfect for personal and team productivity.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 10+</span>
+                        <span class="spec-tag">macOS 11+</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download Windows</a>
+                        <a href="#" class="download-btn">Download macOS</a>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="todoist task manager">
+                    <h3 class="app-name">Todoist</h3>
+                    <p class="app-description">Powerful task manager with natural language processing and cross-platform sync.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 10+</span>
+                        <span class="spec-tag">macOS 10.15+</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Graphic Design Category -->
+        <div class="category" data-category="design">
+            <div class="category-header">
+                <div class="category-title">
+                    <h2>Graphic Design</h2>
+                    <p class="category-description">Creative tools for designers and artists</p>
+                </div>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card" data-name="gimp photo editor">
+                    <h3 class="app-name">GIMP</h3>
+                    <p class="app-description">Free and open-source image editor with advanced features for photo manipulation and graphic design.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 7+</span>
+                        <span class="spec-tag">macOS 10.9+</span>
+                        <span class="spec-tag">Linux</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="inkscape vector graphics">
+                    <h3 class="app-name">Inkscape</h3>
+                    <p class="app-description">Professional vector graphics editor for creating scalable illustrations, logos, and diagrams.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 7+</span>
+                        <span class="spec-tag">macOS 10.11+</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Utilities Category -->
+        <div class="category" data-category="utilities">
+            <div class="category-header">
+                <div class="category-title">
+                    <h2>Utilities</h2>
+                    <p class="category-description">Essential tools for system optimization and maintenance</p>
+                </div>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card" data-name="7-zip file archiver">
+                    <h3 class="app-name">7-Zip</h3>
+                    <p class="app-description">High compression ratio file archiver supporting multiple formats with AES-256 encryption.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 7+</span>
+                        <span class="spec-tag">Free</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="vlc media player">
+                    <h3 class="app-name">VLC Media Player</h3>
+                    <p class="app-description">Universal media player supporting virtually all video and audio formats without additional codecs.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 7+</span>
+                        <span class="spec-tag">macOS 10.10+</span>
+                        <span class="spec-tag">Linux</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Development Tools Category -->
+        <div class="category" data-category="development">
+            <div class="category-header">
+                <div class="category-title">
+                    <h2>Development Tools</h2>
+                    <p class="category-description">Professional tools for developers and programmers</p>
+                </div>
+            </div>
+            <div class="apps-grid">
+                <div class="app-card" data-name="visual studio code vscode">
+                    <h3 class="app-name">Visual Studio Code</h3>
+                    <p class="app-description">Lightweight but powerful code editor with IntelliSense, debugging, and Git integration.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 10+</span>
+                        <span class="spec-tag">macOS 10.11+</span>
+                        <span class="spec-tag">Linux</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+
+                <div class="app-card" data-name="git version control">
+                    <h3 class="app-name">Git</h3>
+                    <p class="app-description">Distributed version control system for tracking changes in source code during development.</p>
+                    <div class="app-specs">
+                        <span class="spec-tag">Windows 7+</span>
+                        <span class="spec-tag">macOS 10.9+</span>
+                        <span class="spec-tag">Linux</span>
+                    </div>
+                    <div class="download-section">
+                        <a href="#" class="download-btn">Download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-results" id="noResults" style="display: none;">
+        No applications found. Try a different search term.
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Nexus Applications</p>
+    </footer>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const categoriesContainer = document.getElementById('categoriesContainer');
+        const noResults = document.getElementById('noResults');
+
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const categories = document.querySelectorAll('.category');
+            let hasVisibleApps = false;
+
+            categories.forEach(category => {
+                const apps = category.querySelectorAll('.app-card');
+                let categoryHasVisibleApp = false;
+
+                apps.forEach(app => {
+                    const appName = app.getAttribute('data-name');
+                    const appText = app.textContent.toLowerCase();
+
+                    if (appText.includes(searchTerm)) {
+                        app.style.display = 'block';
+                        categoryHasVisibleApp = true;
+                        hasVisibleApps = true;
+                    } else {
+                        app.style.display = 'none';
+                    }
+                });
+
+                category.style.display = categoryHasVisibleApp ? 'block' : 'none';
+            });
+
+            categoriesContainer.style.display = hasVisibleApps ? 'block' : 'none';
+            noResults.style.display = hasVisibleApps ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>
