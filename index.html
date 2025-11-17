@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Directory - Discover Great Applications</title>
+    <title>Nexus Applications - Discover Great Applications</title>
     <style>
         * {
             margin: 0;
@@ -23,6 +23,9 @@
             background: #000000;
             padding: 1.5rem 3rem;
             border-bottom: 1px solid #1a1f2e;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
@@ -169,6 +172,7 @@
             background: #0a0e1a;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .app-card::before {
@@ -280,6 +284,17 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
 
+        .view-details-btn {
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+        }
+
+        .view-details-btn:hover {
+            background: #d4af37;
+            color: #000000;
+        }
+
         .no-results {
             text-align: center;
             padding: 4rem;
@@ -312,6 +327,10 @@
             .category {
                 padding: 2rem;
             }
+
+            .top-nav {
+                padding: 1.5rem 1rem;
+            }
         }
     </style>
 </head>
@@ -339,7 +358,7 @@
                 </div>
             </div>
             <div class="apps-grid">
-                <div class="app-card" data-name="notion desktop">
+                <div class="app-card" data-name="notion desktop" onclick="window.location.href='apps/notion.html'">
                     <h3 class="app-name">Notion Desktop</h3>
                     <p class="app-description">All-in-one workspace for notes, tasks, wikis, and databases. Perfect for personal and team productivity.</p>
                     <div class="app-specs">
@@ -347,12 +366,11 @@
                         <span class="spec-tag">macOS 11+</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download Windows</a>
-                        <a href="#" class="download-btn">Download macOS</a>
+                        <a href="apps/notion.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
 
-                <div class="app-card" data-name="todoist task manager">
+                <div class="app-card" data-name="todoist task manager" onclick="window.location.href='apps/todoist.html'">
                     <h3 class="app-name">Todoist</h3>
                     <p class="app-description">Powerful task manager with natural language processing and cross-platform sync.</p>
                     <div class="app-specs">
@@ -360,7 +378,7 @@
                         <span class="spec-tag">macOS 10.15+</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/todoist.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
             </div>
@@ -375,7 +393,7 @@
                 </div>
             </div>
             <div class="apps-grid">
-                <div class="app-card" data-name="gimp photo editor">
+                <div class="app-card" data-name="gimp photo editor" onclick="window.location.href='apps/gimp.html'">
                     <h3 class="app-name">GIMP</h3>
                     <p class="app-description">Free and open-source image editor with advanced features for photo manipulation and graphic design.</p>
                     <div class="app-specs">
@@ -384,11 +402,11 @@
                         <span class="spec-tag">Linux</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/gimp.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
 
-                <div class="app-card" data-name="inkscape vector graphics">
+                <div class="app-card" data-name="inkscape vector graphics" onclick="window.location.href='apps/inkscape.html'">
                     <h3 class="app-name">Inkscape</h3>
                     <p class="app-description">Professional vector graphics editor for creating scalable illustrations, logos, and diagrams.</p>
                     <div class="app-specs">
@@ -396,7 +414,7 @@
                         <span class="spec-tag">macOS 10.11+</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/inkscape.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
             </div>
@@ -411,7 +429,7 @@
                 </div>
             </div>
             <div class="apps-grid">
-                <div class="app-card" data-name="7-zip file archiver">
+                <div class="app-card" data-name="7-zip file archiver" onclick="window.location.href='apps/7zip.html'">
                     <h3 class="app-name">7-Zip</h3>
                     <p class="app-description">High compression ratio file archiver supporting multiple formats with AES-256 encryption.</p>
                     <div class="app-specs">
@@ -419,11 +437,11 @@
                         <span class="spec-tag">Free</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/7zip.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
 
-                <div class="app-card" data-name="vlc media player">
+                <div class="app-card" data-name="vlc media player" onclick="window.location.href='apps/vlc.html'">
                     <h3 class="app-name">VLC Media Player</h3>
                     <p class="app-description">Universal media player supporting virtually all video and audio formats without additional codecs.</p>
                     <div class="app-specs">
@@ -432,7 +450,7 @@
                         <span class="spec-tag">Linux</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/vlc.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
             </div>
@@ -447,7 +465,7 @@
                 </div>
             </div>
             <div class="apps-grid">
-                <div class="app-card" data-name="visual studio code vscode">
+                <div class="app-card" data-name="visual studio code vscode" onclick="window.location.href='apps/vscode.html'">
                     <h3 class="app-name">Visual Studio Code</h3>
                     <p class="app-description">Lightweight but powerful code editor with IntelliSense, debugging, and Git integration.</p>
                     <div class="app-specs">
@@ -456,11 +474,11 @@
                         <span class="spec-tag">Linux</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/vscode.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
 
-                <div class="app-card" data-name="git version control">
+                <div class="app-card" data-name="git version control" onclick="window.location.href='apps/git.html'">
                     <h3 class="app-name">Git</h3>
                     <p class="app-description">Distributed version control system for tracking changes in source code during development.</p>
                     <div class="app-specs">
@@ -469,7 +487,7 @@
                         <span class="spec-tag">Linux</span>
                     </div>
                     <div class="download-section">
-                        <a href="#" class="download-btn">Download</a>
+                        <a href="apps/git.html" class="download-btn view-details-btn" onclick="event.stopPropagation()">View Details</a>
                     </div>
                 </div>
             </div>
