@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notion Desktop - Nexus Applications</title>
+    <link rel="icon" type="image/png" href="../logo.png">
     <style>
         * {
             margin: 0;
@@ -16,10 +17,14 @@
             line-height: 1.6;
             color: #a0a0a0;
             background: #000000;
+            background-image: 
+                linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.9)),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 175, 55, 0.03) 2px, rgba(212, 175, 55, 0.03) 4px);
         }
 
         .top-nav {
-            background: #000000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1.5rem 3rem;
             border-bottom: 1px solid #1a1f2e;
             position: sticky;
@@ -31,11 +36,47 @@
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            animation: logoGlow 3s ease-in-out infinite;
+            text-decoration: none;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.5),
+                             0 0 20px rgba(212, 175, 55, 0.3),
+                             0 0 30px rgba(212, 175, 55, 0.1);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.8),
+                             0 0 40px rgba(212, 175, 55, 0.5),
+                             0 0 60px rgba(212, 175, 55, 0.3);
+                transform: scale(1.02);
+            }
+        }
+
+        .logo::before {
+            content: '◆';
+            margin-right: 0.5rem;
+            display: inline-block;
+            animation: logoSpin 4s linear infinite;
+        }
+
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo:hover {
+            animation: logoGlow 1s ease-in-out infinite;
         }
 
         .back-btn {
@@ -175,6 +216,37 @@
             color: #808080;
         }
 
+        .screenshots-section {
+            margin-top: 3rem;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .screenshot-item {
+            border: 2px solid #1a1f2e;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .screenshot-item:hover {
+            border-color: #d4af37;
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
         .download-section {
             background: linear-gradient(135deg, #0a0e1a 0%, #000000 100%);
             border: 2px solid #d4af37;
@@ -225,7 +297,7 @@
 </head>
 <body>
     <nav class="top-nav">
-        <div class="logo">NEXUS APPLICATIONS</div>
+        <a href="../index.html" class="logo">NEXUS APPLICATIONS</a>
         <a href="../index.html" class="back-btn">← Back to Directory</a>
     </nav>
 
@@ -314,12 +386,27 @@
             </div>
         </div>
 
+        <div class="section screenshots-section">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <img src="../screenshots/notion-1.png" alt="Notion Screenshot 1">
+                </div>
+                <div class="screenshot-item">
+                    <img src="../screenshots/notion-2.png" alt="Notion Screenshot 2">
+                </div>
+                <div class="screenshot-item">
+                    <img src="../screenshots/notion-3.png" alt="Notion Screenshot 3">
+                </div>
+            </div>
+        </div>
+
         <div class="download-section">
             <h2 class="download-title">Ready to Download?</h2>
             <p class="section-content" style="margin-bottom: 2rem;">Choose your platform below</p>
             <div class="download-buttons">
-                <a href="https://drive.google.com/uc?export=download&id=1dI6uTmzlpreWQeTxKNN3xkgIb3vc8LAR" class="main-download-btn">Windows Download</a>
-                <a href="https://drive.google.com/uc?export=download&id=1gEbrNjeV9CAIeYYUlxewrHu1uJ_rkJXC" class="main-download-btn">macOS Download</a>
+                <a href="https://www.notion.so/desktop" class="main-download-btn" target="_blank">Windows Download</a>
+                <a href="https://www.notion.so/desktop" class="main-download-btn" target="_blank">macOS Download</a>
             </div>
         </div>
     </div>
