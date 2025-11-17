@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexus Applications - Discover Great Applications</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
         * {
             margin: 0;
@@ -16,11 +17,15 @@
             line-height: 1.6;
             color: #a0a0a0;
             background: #000000;
+            background-image: 
+                linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.9)),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 175, 55, 0.03) 2px, rgba(212, 175, 55, 0.03) 4px);
             margin: 0;
         }
 
         .top-nav {
-            background: #000000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1.5rem 3rem;
             border-bottom: 1px solid #1a1f2e;
             position: sticky;
@@ -29,11 +34,46 @@
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #d4af37;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.5),
+                             0 0 20px rgba(212, 175, 55, 0.3),
+                             0 0 30px rgba(212, 175, 55, 0.1);
+                transform: scale(1);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.8),
+                             0 0 40px rgba(212, 175, 55, 0.5),
+                             0 0 60px rgba(212, 175, 55, 0.3);
+                transform: scale(1.02);
+            }
+        }
+
+        .logo::before {
+            content: '◆';
+            margin-right: 0.5rem;
+            display: inline-block;
+            animation: logoSpin 4s linear infinite;
+        }
+
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .logo:hover {
+            animation: logoGlow 1s ease-in-out infinite;
         }
 
         header {
@@ -336,7 +376,9 @@
 </head>
 <body>
     <nav class="top-nav">
-        <div class="logo">NEXUS APPLICATIONS</div>
+        <a href="index.html" style="text-decoration: none;">
+            <div class="logo">NEXUS APPLICATIONS</div>
+        </a>
     </nav>
     
     <header>
